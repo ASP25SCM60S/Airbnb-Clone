@@ -13,6 +13,10 @@
     height: 32px;
     object-fit: contain;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.header_icon:hover {
+    transform: scale(1.05);
 }
 .header_center{
     display: flex;
@@ -24,10 +28,14 @@
     border: 1px solid #ddd;
     border-radius: 999px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.2s ease;
+    transition: all 0.2s ease;
 }
 .header_center:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+.header_center:focus-within {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    border-color: #ff385c;
 }
 .header_center input {
     border: none;
@@ -35,41 +43,53 @@
     width: 100%;
     padding: 0 10px;
     font-size: 14px;
+    background: transparent;
 }
-.header_center .MuiSvgIcon-root {
-    color: #ff385c;
+.search_button {
+    background: none;
+    border: none;
+    padding: 8px;
     cursor: pointer;
+    color: #ff385c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+.search_button:hover {
+    background-color: #f7f7f7;
 }
 .header_right{
     display: flex;
     align-items: center;
     gap: 20px;
 }
-.header_right p {
-    font-size: 14px;
-    font-weight: 500;
+.host_button, .language_button, .menu_button, .profile_button {
+    background: none;
+    border: none;
     cursor: pointer;
     padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222;
     border-radius: 999px;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
-.header_right p:hover {
+.host_button:hover {
     background-color: #f7f7f7;
 }
-.header_right .MuiSvgIcon-root {
-    cursor: pointer;
+.language_button, .menu_button {
     padding: 8px;
     border-radius: 50%;
-    transition: background-color 0.2s ease;
 }
-.header_right .MuiSvgIcon-root:hover {
+.language_button:hover, .menu_button:hover {
     background-color: #f7f7f7;
 }
-.header_right .MuiAvatar-root {
-    cursor: pointer;
-    transition: transform 0.2s ease;
+.profile_button {
+    padding: 0;
 }
-.header_right .MuiAvatar-root:hover {
+.profile_button:hover {
     transform: scale(1.05);
 }
 @media (max-width: 768px) {
@@ -79,7 +99,10 @@
     .header_center {
         display: none;
     }
-    .header_right p {
+    .host_button {
+        display: none;
+    }
+    .language_button {
         display: none;
     }
 }
