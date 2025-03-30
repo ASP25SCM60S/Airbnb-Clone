@@ -2,37 +2,84 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 30px;
+    background-color: white;
     position: sticky;
     top: 0;
-    background-color: white;
     z-index: 100;
-    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .header_icon{
+    height: 32px;
     object-fit: contain;
-    height: 100px;
-    margin-left: 20px;
+    cursor: pointer;
 }
 .header_center{
     display: flex;
-    flex: 1;
     align-items: center;
-    max-width: fit-content;
-    padding: 10px;
-    height: 30px;
-    border: 1px solid lightgray;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 20px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
     border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease;
 }
-.header_center > input { 
+.header_center:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+.header_center input {
     border: none;
-    padding: 10px;
-    outline-width: 0;
+    outline: none;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+}
+.header_center .MuiSvgIcon-root {
+    color: #ff385c;
+    cursor: pointer;
 }
 .header_right{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 15vw;
-    margin-right: 80px;
-
+    gap: 20px;
+}
+.header_right p {
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+.header_right p:hover {
+    background-color: #f7f7f7;
+}
+.header_right .MuiSvgIcon-root {
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+.header_right .MuiSvgIcon-root:hover {
+    background-color: #f7f7f7;
+}
+.header_right .MuiAvatar-root {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.header_right .MuiAvatar-root:hover {
+    transform: scale(1.05);
+}
+@media (max-width: 768px) {
+    .Header {
+        padding: 10px 15px;
+    }
+    .header_center {
+        display: none;
+    }
+    .header_right p {
+        display: none;
+    }
 }

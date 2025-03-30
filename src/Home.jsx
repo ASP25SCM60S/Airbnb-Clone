@@ -1,45 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './Banner.jsx'; 
 import "./Home.css";
-import Card from './Card.jsx'; 
+import Card from './Card.jsx';
+import { cardData } from './data/cards';
 
 function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    // Simulate loading data
+    const timer = setTimeout(() => {
+      setCards(cardData);
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className='home'>
       <Banner />
-      <Card
-        src="https://a0.muscache.com/im/pictures/eb9c7c6a-ee33-414a-b1ba-14e8860d59b3.jpg?im_w=720"
-        title="Online Experiences"
-        description="Unique activities we can do together, led by a world of hosts."
-      />
-      <Card
-        src="https://a0.muscache.com/im/pictures/15159c9c-9cf1-400e-b809-4e13f286fa38.jpg?im_w=720"
-        title="Unique stays"
-        description="Spaces that are more than just a place to sleep."
-      />
-      <Card
-        src="https://a0.muscache.com/im/pictures/fdb46962-10c1-45fc-a228-d0b055411448.jpg?im_w=720"
-        title="Entire homes"
-        description="Comfortable private places, with room for friends or family."
-      />
-      <Card
-        src="https://media.nomadicmatt.com/2019/airbnb_breakup3.jpg"
-        title="3 Bedroom Flat in Bournemouth"
-        description="Superhost with a stunning view of the beachside in Sunny Bournemouth"
-        price="£130/night"
-      />
-      <Card
-        src="https://thespaces.com/wp-content/uploads/2017/08/Courtesy-of-Airbnb.jpg"
-        title="Penthouse in London"
-        description="Enjoy the amazing sights of London with this stunning penthouse"
-        price="£350/night"
-      />
-      <Card
-        src="https://media.nomadicmatt.com/2018/apartment.jpg"
-        title="1 Bedroom apartment"
-        description="Superhost with great amenities and a fabolous shopping complex nearby"
-        price="£70/night"
-      />
+      <div className="home_section">
+        {isLoading ? (
+          <div className="loading_container">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="card_skeleton">
+                <div className="skeleton_image"></div>
+                <div className="skeleton_content">
+                  <div className="skeleton_title"></div>
+                  <div className="skeleton_description"></div>
+                  <div className="skeleton_price"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          cards.map(card => (
+            <Card
+              key={card.id}
+              src={card.src}
+              title={card.title}
+              description={card.description}
+              price={card.price}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 }
