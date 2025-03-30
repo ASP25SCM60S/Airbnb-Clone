@@ -14,9 +14,19 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.card > img {
+.card_image_container {
+    position: relative;
     width: 100%;
-    height: 200px;
+    padding-top: 66.67%; /* 3:2 aspect ratio */
+    overflow: hidden;
+}
+
+.card > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -25,14 +35,65 @@
     transform: scale(1.05);
 }
 
+.favorite_button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.favorite_button:hover {
+    transform: scale(1.1);
+}
+
+.favorite_button .MuiSvgIcon-root {
+    color: #ff385c;
+    font-size: 20px;
+}
+
 .card_info {
     padding: 16px;
 }
 
-.card_info h2 {
+.card_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.card_header h2 {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 8px;
+    color: #222;
+    margin: 0;
+    flex: 1;
+}
+
+.card_rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.star_icon {
+    color: #ff385c;
+    font-size: 16px;
+}
+
+.card_rating span {
+    font-size: 14px;
+    font-weight: 500;
     color: #222;
 }
 
@@ -40,21 +101,35 @@
     font-size: 14px;
     font-weight: 400;
     color: #717171;
-    margin-bottom: 8px;
+    margin: 0 0 8px 0;
     line-height: 1.4;
 }
 
-.card_info h3 {
+.card_price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.card_price h3 {
     font-size: 16px;
     font-weight: 500;
     color: #222;
-    margin-top: 8px;
+    margin: 0;
 }
 
-.card_info h3::before {
-    content: "£";
+.per_night {
     font-size: 14px;
-    margin-right: 2px;
+    color: #717171;
+}
+
+.card_loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #666;
+    font-size: 14px;
 }
 
 @media (max-width: 768px) {
@@ -66,7 +141,7 @@
         padding: 12px;
     }
     
-    .card_info h2 {
+    .card_header h2 {
         font-size: 16px;
     }
     
@@ -74,7 +149,11 @@
         font-size: 13px;
     }
     
-    .card_info h3 {
+    .card_price h3 {
         font-size: 14px;
+    }
+    
+    .per_night {
+        font-size: 12px;
     }
 }
